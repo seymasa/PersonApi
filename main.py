@@ -49,4 +49,4 @@ def update_name_person(person_id: int, new_person_name: str):
 def delete_person(person_id: int):
     person = [i for i in persons if i['id'] == person_id]
     persons.remove(person[0])
-    return persons
+    return person
