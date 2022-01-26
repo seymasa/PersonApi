@@ -29,7 +29,7 @@ def add_person(person: Person): #ad, soyad, meslek, memleket
     person_dict = person.dict()
     person_dict['id'] = persons[-1]['id'] + 1
     persons.append(dict(person_dict))
-    return {"item": persons}
+    return persons
 
 
 @app.get("/get_person/{person_id}")
