@@ -27,7 +27,7 @@ def get_all_persons():
 @app.post("/add_person/")
 def add_person(person: Person): #ad, soyad, meslek, memleket
     person_dict = person.dict()
-    person_dict['id'] = persons[-1]['id'] + 1
+    # person_dict['id'] = persons[-1]['id'] + 1
     persons.append(dict(person_dict))
     return persons
 
