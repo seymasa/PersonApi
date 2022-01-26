@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
-persons = [{"id": 1, "ad": "Seyma", "soyad": "Sarıgil", "meslek": "Gelistirici", "memleket": "Hatay"},
+persons = [{"id": 1, "ad": "Seyma", "soyad": "Sarigil", "meslek": "Gelistirici", "memleket": "Hatay"},
            {"id": 2, "ad": "Alp", "soyad": "Kara", "meslek": "Müzisyen", "memleket": "İstanbul"}]
 
 
@@ -29,20 +29,20 @@ def add_person(person: Person): #ad, soyad, meslek, memleket
     return persons
 
 
-@app.get("/get_person/{person_id}")
+@app.get("/get_person/{person_id}/")
 def get_specific_person(person_id: int):
     person = [i for i in persons if i["id"] == person_id]
     return person
 
 
-@app.put("/update_person/{person_id}")
+@app.put("/update_person/{person_id}/")
 def update_name_person(person_id: int, person: Person):
     p = [i for i in persons if person.id == person_id]
     p[0]["ad"] = person.ad
     return p
 
 
-@app.delete("/delete_person/{person_id}")
+@app.delete("/delete_person/{person_id}/")
 def delete_person(person_id: int):
     person = [i for i in persons if i["id"] == person_id]
     persons.remove(person[0])
