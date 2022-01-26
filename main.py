@@ -36,10 +36,10 @@ def get_specific_person(person_id: int):
 
 
 @app.put("/update_person/{person_id}")
-def update_name_person(person_id: int, new_person_name: str):
-    person = [i for i in persons if i['id'] == person_id]
-    person[0]['ad'] = new_person_name
-    return persons
+def update_name_person(person_id: int, person: Person):
+    p = [i for i in persons if person.id == person_id]
+    p[0]['ad'] = person.ad
+    return p
 
 
 @app.delete("/delete_person/{person_id}")
