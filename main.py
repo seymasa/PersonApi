@@ -35,18 +35,18 @@ def add_person(person: Person): #ad, soyad, meslek, memleket
 @app.get("/get_person/{person_id}")
 def get_specific_person(person_id: int):
     person = [i for i in persons if i['id'] == person_id]
-    return {"item": persons}
+    return person
 
 
 @app.put("/update_person/{person_id}")
 def update_name_person(person_id: int, new_person_name: str):
     person = [i for i in persons if i['id'] == person_id]
     person[0]['ad'] = new_person_name
-    return {"item": persons}
+    return persons
 
 
 @app.delete("/delete_person/{person_id}")
 def delete_person(person_id: int):
     person = [i for i in persons if i['id'] == person_id]
     persons.remove(person[0])
-    return {"item": persons}
+    return persons
