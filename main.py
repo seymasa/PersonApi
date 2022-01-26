@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
 
@@ -7,7 +9,7 @@ persons = [{'id': 1, 'ad': 'Seyma', 'soyad': 'Sarıgil', 'meslek': 'Gelistirici'
 
 
 class Person(BaseModel):
-    id: int
+    id: Optional[int] = None
     ad: str
     soyad: str
     meslek: str
@@ -22,10 +24,11 @@ def get_all_persons():
     return persons
 
 
-@app.post("/add_person")
-def add_person(Person): #ad, soyad, meslek, memleket
-    Person['id'] = persons[-1]['id'] + 1
-    persons.append(Person)
+@app.post("/add_person/")
+def add_person(person: Person): #ad, soyad, meslek, memleket
+    person_dict = person.dict()
+    person_dict['id'] = persons[-1]['id'] + 1
+    persons.append(dict(person_dict))
     return {"item": persons}
 
 
