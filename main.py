@@ -15,24 +15,24 @@ def add_person(ad, soyad, meslek, memleket):
     id_ = persons[-1]['id'] + 1
     person = {'id': id_, 'ad': ad, 'soyad': soyad, 'meslek': meslek, 'memleket': memleket}
     persons.append(person)
-    return persons
+    return {"item": persons}
 
 
 @app.get("/get_person/{person_id}")
 def get_specific_person(person_id: int):
     person = [i for i in persons if i['id'] == person_id]
-    return {"item": person}
+    return {"item": persons}
 
 
 @app.put("/update_person/{person_id}")
 def update_name_person(person_id: int, new_person_name: str):
     person = [i for i in persons if i['id'] == person_id]
     person[0]['ad'] = new_person_name
-    return person
+    return {"item": persons}
 
 
 @app.delete("/delete_person/{person_id}")
 def delete_person(person_id: int):
     person = [i for i in persons if i['id'] == person_id]
     persons.remove(person[0])
-    return persons
+    return {"item": persons}
