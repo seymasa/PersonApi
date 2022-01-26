@@ -1,8 +1,20 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
+from pydantic import BaseModel
 
 app = FastAPI()
 persons = [{'id': 1, 'ad': 'Seyma', 'soyad': 'Sarıgil', 'meslek': 'Gelistirici', 'memleket': 'Hatay'},
            {'id': 2, 'ad': 'Alp', 'soyad': 'Kara', 'meslek': 'Müzisyen', 'memleket': 'İstanbul'}]
+
+
+class Person(BaseModel):
+    id: int
+    ad: str
+    soyad: str
+    meslek: str
+    memleket: str
+
+    if __name__ == "__main__":
+        id = persons[-1]['id'] + 1
 
 
 @app.get("/")
@@ -11,10 +23,9 @@ def get_all_persons():
 
 
 @app.post("/add_person")
-def add_person(ad, soyad, meslek, memleket):
-    id_ = persons[-1]['id'] + 1
-    person = {'id': id_, 'ad': ad, 'soyad': soyad, 'meslek': meslek, 'memleket': memleket}
-    persons.append(person)
+def add_person(Person): #ad, soyad, meslek, memleket
+    Person['id'] = persons[-1]['id'] + 1
+    persons.append(Person)
     return {"item": persons}
 
 
