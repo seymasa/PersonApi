@@ -15,8 +15,8 @@ class Person(BaseModel):
     meslek: str
     memleket: str
 
-    if __name__ == "__main__":
-        id = persons[-1]['id'] + 1
+    def __init__(self):
+        self.id = persons[-1]['id'] + 1
 
 
 @app.get("/")
