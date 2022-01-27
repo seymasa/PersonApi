@@ -39,7 +39,7 @@ def get_specific_person(person_id: int):
 def update_name_person(person_id: int, person: Person):
     p = [i for i in persons if person.id == person_id]
     p[0]["ad"] = person.ad
-    return p
+    return persons
 
 
 @app.delete("/delete_person/{person_id}/")
